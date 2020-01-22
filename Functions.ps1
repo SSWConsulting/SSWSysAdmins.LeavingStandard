@@ -193,7 +193,7 @@
            [Parameter(Mandatory = $True, Position = 0)]
            $username
        )
-       $SnipeApiKey = get-content "C:\C:\inetpub\wwwroot\SSWLeavingStandard\snipeapi.key"
+       $SnipeApiKey = get-content "C:\inetpub\wwwroot\SSWLeavingStandard\snipeapi.key"
        $SnipeUser = $username.samaccountname
    
        #Here we save the Snipe Module for Powershell (https://www.powershellgallery.com/packages/SnipeitPS) to easily access and use it
@@ -402,9 +402,9 @@
    
        Import-Module Az
        
-       $AesKEy = get-content "C:\C:\inetpub\wwwroot\SSWLeavingStandard\AzureSecret.key"
-       $AzureUser = get-content "C:\C:\inetpub\wwwroot\SSWLeavingStandard\AzureServicePrincipal.key"
-       $AzureSecret = get-content "C:\C:\inetpub\wwwroot\SSWLeavingStandard\AzureClientSecret.key" | ConvertTo-SecureString -Key $AesKey
+       $AesKEy = get-content "C:\inetpub\wwwroot\SSWLeavingStandard\AzureSecret.key"
+       $AzureUser = get-content "C:\inetpub\wwwroot\SSWLeavingStandard\AzureServicePrincipal.key"
+       $AzureSecret = get-content "C:\inetpub\wwwroot\SSWLeavingStandard\AzureClientSecret.key" | ConvertTo-SecureString -Key $AesKey
        $AzureCredential = New-Object System.Management.Automation.PSCredential($AzureUser, $AzureSecret)
        
        $FinalAzureGroups = @()
