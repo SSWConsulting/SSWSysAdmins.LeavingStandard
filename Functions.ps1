@@ -167,7 +167,7 @@ function New-RedirectRule {
     $FirstName = $username.GivenName
     $LastName = $username.Surname
 
-    New-TransportRule "Leaving Standard - $FirstName $LastName" -From $Email -RedirectMessageTo $target
+    New-TransportRule "Leaving Standard - $FirstName $LastName" -SentTo $Email -RedirectMessageTo $target
 
     $bodyhtml = "<div style='font-family:Calibri;'>"
     $bodyhtml += "</H3>"
