@@ -341,50 +341,56 @@ function Send-FinishEmail {
         $ownTarget
     )
 
-    $bodyhtml2 = "<div style='font-family:Calibri;'>"
-    $bodyhtml2 += "<p>SSW Leaving Standard finished.</p>"
-    $bodyhtml2 += "<ul><li>1. Backup my email (in Office 365 Compliance Center) to fileserver</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>3. Remove me from all groups in Active Directory (Including Admin Account)</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>4. Disable my account</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>5. Edit my account description with 'Disabled - &lt; The Current Date&gt; '</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>6. Remove user from Skype for Business Server</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>7. Hide my email from address lists</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>8. Forward my emails to $primaryTarget without leaving a copy on the recipients mailbox. Email the new owner to let him know. Also, add a Mail Flow rule in our EAC to forward my emails to the person above (Go to https://mail.ssw.com.au/ecp | Mail Flow | &nbsp;'Create a new rule...' to do this)</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>9. Check in all assets checked out to me on Snipe (Go to https://snipe.ssw.com.au/ | Look for my name on the asset list | Check in all assets so we know they are available for other people)</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>10. Turn agent to end-user in Zendesk</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>11. Remove my access from ssw.visualstudio.com (Microsoft Account) and ssw2.visualstudio.com as well</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>12. Check if any Azure Resource Groups are still owned by me - if yes, they need to be handed over to someone else</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>13. Move my account to SSW/ztDisabledUsers_ToClean in Active Directory</li></ul>"
-    $bodyhtml2 += "<p><strong>Done (automatically)</strong></p><ul>"
-    $bodyhtml2 += "<li>14. Remove my access from Azure (Microsoft Account)</li></ul>"
-    $bodyhtml2 += "<ul><li>15. Disable my VPN Access</li></ul>"
-    $bodyhtml2 += "<ul><li>16. Disable unified messaging for my account.</li></ul>"
-    $bodyhtml2 += "<ul><li>15. Remove my access from SugarLearning</li></ul>"
-    $bodyhtml2 += "<ul><li>16. Remove my access from SSW Consulting GitHub</li></ul>"
-    $bodyhtml2 += "<ul><li>17. Remove my MSDN subscription</li></ul>"
-    $bodyhtml2 += "<ul><li>18. Remove from Employee page (http://sharepoint.ssw.com.au/AboutUs/Employees/Pages/Employees.aspx | Edit Page | Set EmpIsActive to 'No')</li></ul>"
-    $bodyhtml2 += "<ul><li>19. Remove my fingerprint from Control 4 [Sydney Office Only]</li></ul>"
-    $bodyhtml2 += "<ul><li>20. Remove Control 4 Account: https://customer.control4.com/account/users</li></ul>"
-    $bodyhtml2 += "<ul><li>21. Input the correct date in my user CRM account in the field 'Date Finished'</li></ul>"
-    $bodyhtml2 += "<ul><li>22. Disable my Dynamics 365 (CRM) User account</li></ul>"
-    
-    $bodyhtml2 += "<p></p>"
-    $bodyhtml2 += "<p>-- Partially powered by SSW.LeavingStandard<br> Server: $env:computername </p>"
-    
+    $bodyhtml2 = @"
+    <div style='font-family:Calibri;'>
+    <p>SSW Leaving Standard finished.</p>
+    <ul><li>1. Email - Backup my email (in Office 365 Compliance Center) to fileserver</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>2. File Server - Go through this guide <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EaI1Gk_sds5NqK0QBLqAMK4BR16CgA1JwzWbK2MGiJZs7Q?e=ij7FV8>here<a> in our intranet and totally clean my folders in fileserver </li></ul>
+    <p><strong>Done </strong></p>
+    <ul><li>3. Active Directory - Remove me from groups in Active Directory (Including Admin Account - leave CRM and default groups)</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>4. Active Directory - Disable my account</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>5. Active Directory - Edit my account description with 'Disabled - &lt; The Current Date&gt; '</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>6. S4B - Remove user from Skype for Business Server</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>7. Exchange - Hide my email from address lists</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>8. Exchange - Forward my emails to $primaryTarget without leaving a copy on the recipients mailbox. Email the new owner to let him know. Also, add a Mail Flow rule in our EAC to forward my emails to the person above (Go to https://mail.ssw.com.au/ecp | Mail Flow | &nbsp;'Create a new rule...' to do this)</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>9. Snipe - Check in all assets checked out to me on Snipe (Go to https://snipe.ssw.com.au/ | Look for my name on the asset list | Check in all assets so we know they are available for other people)</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>10. Zendesk - Turn agent to end-user in Zendesk</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>11. Azure DevOps - Remove my access from ssw.visualstudio.com (Microsoft Account) and ssw2.visualstudio.com as well</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>12. Azure - Check if any Azure Resource Groups are still owned by me - if yes, they need to be handed over to someone else</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>13. Active Directory - Move my account to SSW/ztDisabledUsers_ToClean</li></ul>
+    <p><strong>Done (automatically)</strong></p><ul>
+    <li>14. Active Directory - Remove ExtensionAttribute1 from AD</li></ul>
+    <ul><li>15. Azure - Remove my access from Azure (Microsoft Account)</li></ul>
+    <ul><li>16. VPN - In NPS, disable my VPN Access  </li></ul>
+    <ul><li>17. Exchange - Disable unified messaging for my account.</li></ul>
+    <ul><li>18. SugarLearning - Remove my access from SugarLearning</li></ul>
+    <ul><li>19. Github - Remove my access from SSW Consulting GitHub</li></ul>
+    <ul><li>20. Microsoft Partner Center - Remove my MSDN subscription</li></ul>
+    <ul><li>21. Github - Remove from Employee page (https://github.com/SSWConsulting/People | Click on Employee name | Click on EmployeeName.md | Edit | Set currentEmployee to "false") | Merge directly to master)</li></ul>
+    <ul><li>22. Invixium - Remove my fingerprint from Control 4 [Sydney Office Only]</li></ul>
+    <ul><li>23. Control 4 - Remove Control 4 Account: https://customer.control4.com/account/users</li></ul>
+    <ul><li>24. OneDrive - Go into my OneDrive and backup the important files in there, they will be lost after 30 days (Office 365 Admin | Active Users | Select the user | OneDrive tab | Get access to files | Download important files to fileserver) </li></ul> 
+    <ul><li>25. CRM - Input the correct date in my user CRM account in the field 'Date Finished'</li></ul>
+    <ul><li>26. CRM - Disable my Dynamics 365 (CRM) User account</li></ul>
+    <p>Note: Thank you, hopefully we will see you around the user groups!</p>
+    <p>-- Partially powered by SSW.LeavingStandard<br> Server: $env:computername </p>
+"@
+
     Send-MailMessage -From "info@ssw.com.au" -to $ownTarget -Subject "Leaving SSW - Disable accounts" -Body $bodyhtml2 -SmtpServer "ssw-com-au.mail.protection.outlook.com" -BodyAsHtml
 
 }
+
 # ------- FINISH SEND FINISHED EMAIL -------
 
 # ------- BEGIN SEARCH AZURE TAGS -------
