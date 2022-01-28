@@ -362,6 +362,10 @@ function Disable-ZendeskUser {
         }
         Method  = 'GET'
     }
+    
+    #Enforce TLS 1.2
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    
     $ZendeskUsers = Invoke-RestMethod @params
     $ZendeskEmployee = $ZendeskUsers.users | where email -eq $LocalUsername
     $ZendeskEmployeeEmail = $ZendeskEmployee.email
