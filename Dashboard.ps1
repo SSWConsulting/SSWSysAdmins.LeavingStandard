@@ -504,6 +504,11 @@ $Page1 = New-UDPage -Name "LeavingStandard" -Content {
             New-UDHtml -Markup "<span style='font-family:Helvetica'><h3>Go to <a href=https://protection.office.com/contentsearchbeta target='_blank'>https://protection.office.com/contentsearchbeta</a>:<ol><li>New Search | Specific Locations | Modify... | Choose users, groups or teams... | Search for the email | Export Results...</li><li>Download the mailbox to \\fileserver\DataSSW\ExEmployees\ExchangeBackup\{username}.pst</li></ol></h3>"
             New-UDCheckbox -Id 'checkStep2' -Label "Yes, I have backed up the email." -LabelPlacement end
         } -Label "Step 2 - Backing up Email"
+        New-UDStep -OnLoad {
+            New-UDTypography -Variant "h4" -Text "It is also necessary to backup the employee's OneDrive to our on-premises file server." -GutterBottom
+            New-UDHtml -Markup "<span style='font-family:Helvetica'><h3> Go to Office 365 Admin | Active Users | Select the user | OneDrive tab | Get access to files | Download important files to \\fileserver\DataSSW\ExEmployees\OneDriveBackup\{username}-OneDrive_{date}.zip</h3>"
+            New-UDCheckbox -Id 'checkStep3' -Label "Yes, I have backed up the OneDrive." -LabelPlacement end
+        } -Label "Step 3 - Backing up OneDrive"
     } -OnFinish {
         $Context = ConvertFrom-Json $Body
         New-UDTypography -Text "Search the leaving employee in AD below:" -Variant h3
@@ -516,6 +521,9 @@ $Page1 = New-UDPage -Name "LeavingStandard" -Content {
         }
         elseif ($Context.CurrentStep -eq 1 -and $Context.Context.checkStep2 -eq $false) {
             New-UDValidationResult -ValidationError "You need to make sure you have backed up the user's email first!" 
+        }
+        elseif ($Context.CurrentStep -eq 2 -and $Context.Context.checkStep3 -eq $false) {
+            New-UDValidationResult -ValidationError "You need to make sure you have backed up the user's OneDrive first!" 
         }
         else {
             New-UDValidationResult -Valid 
