@@ -488,7 +488,8 @@ function Send-FinishEmail {
     $bodyhtml2 = @"
     <div style='font-family:Helvetica;'>
     <p>SSW Leaving Standard finished for $nameTarget</p>
-    <ul><li>1. Email - Backup my email (in Office 365 Compliance Center) to fileserver</li></ul>
+    <ul><li>1. a) Email - Backup my email (in Office 365 Compliance Center) to fileserver</li></ul>
+    <ul><li>   b) OneDrive - Go into my OneDrive and backup the important files in there, they will be lost after 30 days (Office 365 Admin | Active Users | Select the user | OneDrive tab | Get access to files | Download important files to fileserver)</li></ul>
     <p><strong>Done (automatically)</strong></p><ul>
     <li>2. File Server - Go through this guide <a href=$SharepointIntranetLink1>here<a> in our intranet and totally clean my folders in fileserver </li></ul>
     <p><strong>Done (automatically)</strong></p>
@@ -522,9 +523,12 @@ function Send-FinishEmail {
     <ul><li>17. Microsoft Partner Center - Remove my MSDN subscription</li></ul>
     <ul><li>18. Invixium - Remove my fingerprint from Control 4 [Sydney Office Only]</li></ul>
     <ul><li>19. Control 4 - Remove Control 4 Account: https://customer.control4.com/account/users</li></ul>
-    <ul><li>20. OneDrive - Go into my OneDrive and backup the important files in there, they will be lost after 30 days (Office 365 Admin | Active Users | Select the user | OneDrive tab | Get access to files | Download important files to fileserver) </li></ul> 
-    <ul><li>21. CRM - Input the correct date in my user CRM account in the field 'Date Finished'</li></ul>
-    <ul><li>22. CRM - Disable my Dynamics 365 (CRM) User account</li></ul>
+    <ul><li>20. Remove Google Brand Accounts – myaccount.google.com</li></ul>
+    <ul><li>21. Remove Octopus accounts – octopus.ssw.com.au</li></ul>
+    <ul><li>22. CRM - Input the correct date in my user CRM account in the field ‘Date Finished’</li></ul>
+    <ul><li>23. CRM - Disable my Dynamics 365 (CRM) User account</li></ul>
+    <ul><li>24. Disable TimePro account</li></ul>
+    <ul><li>25. Remove orphaned user from SharePoint using ShareGate</li></ul>
     <p>Note: Thank you, hopefully we will see you around the user groups!</p>
     <p>-- Partially powered by SSW.LeavingStandard<br> 
     <br>GitHub: <a href=$LeavingStandardGithub>SSWSysAdmins.LeavingStandard</a><br>
