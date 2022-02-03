@@ -783,3 +783,65 @@ function Disable-AdminUser {
     }
     $FoundAdminUsername.Samaccountname
 }
+
+<#
+.SYNOPSIS
+Removes the user from Octopus.
+.DESCRIPTION
+Uses the Octopus API to find the user ID from their email address, and deletes them.
+.PARAMETER username
+The first and last of the user.
+.EXAMPLE
+Invoke-RestMethod -Method DELETE -Uri "$OctopusUrl/api/users/$octopusUserId"
+.NOTES
+The foreach part could be cleaner... but it works this way.
+#>
+
+function Disable-OctopusUser {
+    Param(
+        [Parameter(Mandatory = $True, Position = 0)]
+        $username
+    )
+
+$octoApi = Get-Content $octopusApi
+$octoKey = Get-Content $octopusKey
+
+$octopusUserId = ""
+    
+    $params1 =@{
+        Uri = $octopusUri
+        Headers = @{ $octoApi = $octoKey }
+        Method = 'GET'
+    }
+
+    $octopusUserList = Invoke-RestMethod @params1
+
+    foreach ($user in $octopusUserList.Items)
+    {
+        if ($user.UserName -eq $username)
+        {
+            $octopusUserId = $user.Id
+        }
+
+    }
+
+    if ($octopusUserId -eq "")
+    {
+        Write-Log -File $LogFile -Message "User not found"
+        Exit
+    }
+
+    $params2 =@{
+        Uri = $octopusUri + "/" + $octopusUserId
+        Headers = @{ $octoApi = $octoKey }
+        Method = 'DELETE'
+    }
+        
+    try {
+        Invoke-RestMethod @params2
+        Write-Log -File $LogFile -Message "Successfully deleted user from Octopus..."
+    }
+    catch {
+        Write-Log -File $LogFile -Message "Other error - $($_.Exception.Message)"
+    }     
+}
