@@ -803,10 +803,13 @@ function Disable-OctopusUser {
         $username
     )
 
-$octoApi = Get-Content $octopusApi
-$octoKey = Get-Content $octopusKey
+    $octoApi = Get-Content $octopusApi
+    $octoKey = Get-Content $octopusKey
 
-$octopusUserId = ""
+    $octopusUserId = ""
+
+    #Enforce TLS 1.2
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     
     $params1 =@{
         Uri = $octopusUri
@@ -827,8 +830,8 @@ $octopusUserId = ""
 
     if ($octopusUserId -eq "")
     {
+        $octopusUserId = "noone"
         Write-Log -File $LogFile -Message "User not found"
-        Exit
     }
 
     $params2 =@{
@@ -842,6 +845,6 @@ $octopusUserId = ""
         Write-Log -File $LogFile -Message "Successfully deleted user from Octopus..."
     }
     catch {
-        Write-Log -File $LogFile -Message "Other error - $($_.Exception.Message)"
+        Write-Log -File $LogFile -Message "User not found or other error - $($_.Exception.Message)"
     }     
 }
