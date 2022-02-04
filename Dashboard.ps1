@@ -1,4 +1,4 @@
-﻿# Importing my other file with sweet, sweet functions
+# Importing my other file with sweet, sweet functions
 . "$PSScriptRoot\Functions.ps1"
 
 # Importing the configuration file
@@ -40,6 +40,9 @@ $SugarlearningDisableUserURI = $config.SugarlearningDisableUserURI
 $SharepointIntranetLink1 = $config.SharepointIntranetLink1 
 $LeavingStandardGithub = $config.LeavingStandardGithub  
 $Office365Powershell = $config.Office365Powershell
+$octopusUri = $config.octopusUri
+$octopusApi = "$PSScriptRoot/$($config.octopusApi)"
+$octopusKey = "$PSScriptRoot/$($config.octopusKey)"
 
 # Importing the SSW Write-Log module
 Import-Module -Name $LogModuleLocation
@@ -105,6 +108,7 @@ $Page1 = New-UDPage -Name "LeavingStandard" -Content {
     $SLStep13 = "icon13"
     $SLStep14 = "icon14"
     $SLStep15 = "icon15"
+    $SLStep21 = "icon21"
     $SLStepEmail = "iconEmail"
     $SLStepLog = "iconLog"
 
@@ -280,7 +284,7 @@ $Page1 = New-UDPage -Name "LeavingStandard" -Content {
                     New-CatchErrorBlock -Step $SLStep9
                 }
             }
-            New-UDTextbox -Id "targetExch" -Label "Exchange Rule Target Email Address" -Placeholder "e.g. uly@ssw.com.au"
+            New-UDTextbox -Id "targetExch" -Label "Target Email Address" -Placeholder "e.g. uly@ssw.com.au"
             New-UDElement -Id $SLStep9 -tag "span" -Content {
                 New-UDIcon -icon ban
             }            
@@ -438,8 +442,34 @@ $Page1 = New-UDPage -Name "LeavingStandard" -Content {
                 New-UDIcon -icon ban
             }
         }
+
         New-UDGrid -Item -ExtraSmallSize 3 -Content {
-            New-UDButton -Text "Send Finish Email (After All Steps Done)" -OnClick {
+            New-UDButton -Text "21. Disable Octopus Account" -OnClick {
+                Clear-UDElement -Id $SLStep21
+                Add-UDElement -ParentId $SLStep21 -Content {
+                    New-UDIcon -icon pause
+                    "Started disabling Octopus account..."
+                    Write-Log -File $LogFile -Message "Started disabling Octopus account..."
+                }
+                try {
+                    Disable-OctopusUser -User $Session:SelectedUser.userprincipalname
+                    Clear-UDElement -Id $SLStep21
+                    Add-UDElement -ParentId $SLStep21 -Content {
+                        New-UDIcon -icon check -color green
+                        "Disabled Octopus user - SugarLearning Step 21"
+                    }
+                }
+                catch {
+                    New-CatchErrorBlock -Step $SLStep21
+                }  
+            }              
+            New-UDElement -Id $SLStep21 -tag "span" -Content {
+                New-UDIcon -icon ban
+            }
+        }
+
+        New-UDGrid -Item -ExtraSmallSize 3 -Content {
+            New-UDButton -Text "Send Finish Email (Final Step)" -OnClick {
                 Clear-UDElement -Id $SLStepEmail
                 Add-UDElement -ParentId $SLStepEmail -Content {
                     New-UDIcon -icon pause
