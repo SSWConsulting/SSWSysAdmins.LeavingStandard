@@ -529,6 +529,7 @@ function Send-FinishEmail {
     <ul><li>23. CRM - Disable my Dynamics 365 (CRM) User account</li></ul>
     <ul><li>24. Disable TimePro account</li></ul>
     <ul><li>25. Remove orphaned user from SharePoint using ShareGate</li></ul>
+    <ul><li>26. Remove Vimeo access (SSW TV only)</li></ul>
     <p>Note: Thank you, hopefully we will see you around the user groups!</p>
     <p>-- Partially powered by SSW.LeavingStandard<br> 
     <br>GitHub: <a href=$LeavingStandardGithub>SSWSysAdmins.LeavingStandard</a><br>
