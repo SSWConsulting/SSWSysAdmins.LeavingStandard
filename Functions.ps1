@@ -490,7 +490,7 @@ function Send-FinishEmail {
     <p>SSW Leaving Standard finished for $nameTarget</p>
     <ul><li>1. a) Email - Backup my email (in Office 365 Compliance Center) to fileserver</li></ul>
     <ul><li>   b) OneDrive - Go into my OneDrive and backup the important files in there, they will be lost after 30 days (Office 365 Admin | Active Users | Select the user | OneDrive tab | Get access to files | Download important files to fileserver)</li></ul>
-    <p><strong>Done (automatically)</strong></p><ul>
+    <p><strong>Done manually by SysAdmins</strong></p><ul>
     <li>2. File Server - Go through this guide <a href=$SharepointIntranetLink1>here<a> in our intranet and totally clean my folders in fileserver </li></ul>
     <p><strong>Done (automatically)</strong></p>
     <ul><li>3. Active Directory - Remove me from groups in Active Directory (Leave CRM and default groups)</li></ul>
@@ -518,18 +518,23 @@ function Send-FinishEmail {
     <li>14. Active Directory - Move my account to SSW/ztDisabledUsers</li></ul>
     <p><strong>Done (automatically)</strong></p><ul>
     <li>15. SugarLearning - Remove my access from SugarLearning</li></ul>
-    <p><strong>Done (automatically)</strong></p><ul>
     <li>16. Github - Remove my access from SSW Consulting GitHub</li></ul>
     <ul><li>17. Microsoft Partner Center - Remove my MSDN subscription</li></ul>
     <ul><li>18. Invixium - Remove my fingerprint from Control 4 [Sydney Office Only]</li></ul>
-    <ul><li>19. Control 4 - Remove Control 4 Account: https://customer.control4.com/account/users</li></ul>
-    <ul><li>20. Remove Google Brand Accounts – myaccount.google.com</li></ul>
-    <ul><li>21. Remove Octopus accounts – octopus.ssw.com.au</li></ul>
-    <ul><li>22. CRM - Input the correct date in my user CRM account in the field ‘Date Finished’</li></ul>
-    <ul><li>23. CRM - Disable my Dynamics 365 (CRM) User account</li></ul>
-    <ul><li>24. Disable TimePro account</li></ul>
-    <ul><li>25. Remove orphaned user from SharePoint using ShareGate</li></ul>
-    <ul><li>26. Remove Vimeo access (SSW TV only)</li></ul>
+    <ul><li>19. Salto KS - Remove my access to SSW Melbourne office [Melbourne Office Only]</li></ul>
+    <ul><li>20. UniFi - Remove my access to Brisbane office [Brisbane Office Only]</li></ul>
+    <ul><li>21. Gira - Remove my access to Newcastle office [Newcastle Office Only]</li></ul>
+    <ul><li>22. Control 4 - Remove Control 4 Account: https://customer.control4.com/account/users</li></ul>
+    <ul><li>23. Remove Google Brand Accounts – myaccount.google.com</li></ul>
+    <ul><li>24. Remove Octopus accounts – octopus.ssw.com.au</li></ul>
+    <ul><li>25. CRM - Input the correct date in my user CRM account in the field ‘Date Finished’</li></ul>
+    <ul><li>26. CRM - Change my category to Ex-Admin or Ex-Billable</li></ul>
+    <ul><li>27. CRM - Change Profile Visibility to Show on Alumni</li></ul>
+    <ul><li>28. Remove orphaned user from SharePoint using ShareGate</li></ul>
+    <ul><li>29. Remove my card from any Intranet pages I appear on</li></ul>
+    <ul><li>30. Remove Vimeo access (SSW TV only)</li></ul>
+    <ul><li>31. Create a contact for my email address https://admin.microsoft.com/Adminportal/Home?#/Contact (So emails are redirected correctly)</li></ul>
+    <ul><li>32. Go to Intranet | SSW Designers | Files | General | <a href=https://sswcom.sharepoint.com/:f:/r/sites/SSWDESIGN/Shared%20Documents/General/Project-SSWPeople/Employee-Photos?csf=1&web=1&e=i9ZfBz>Project-SSWPeople<a> and zz my folder</li></ul>
     <p>Note: Thank you, hopefully we will see you around the user groups!</p>
     <p>-- Partially powered by SSW.LeavingStandard<br> 
     <br>GitHub: <a href=$LeavingStandardGithub>SSWSysAdmins.LeavingStandard</a><br>
