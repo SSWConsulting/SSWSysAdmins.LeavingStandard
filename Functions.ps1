@@ -536,6 +536,9 @@ function Send-FinishEmail {
     <ul><li>31. Create a contact for my email address https://admin.microsoft.com/Adminportal/Home?#/Contact (So emails are redirected correctly)</li></ul>
     <ul><li>32. Go to Intranet | SSW Designers | Files | General | <a href=https://sswcom.sharepoint.com/:f:/r/sites/SSWDESIGN/Shared%20Documents/General/Project-SSWPeople/Employee-Photos?csf=1&web=1&e=i9ZfBz>Project-SSWPeople<a> and zz my folder</li></ul>
     <ul><li>33. Remove my LinkedIn access. Go to <a href=https://www.linkedin.com/>https://www.linkedin.com/<a> | Login as Sophie Belle (credentials in keeper) | Go to SSW (My pages) | Admin tools | Manage admins.</li></ul>
+    <ul><li>34. Remove my Keeper SSW account - check there are no passwords that need to be more to a shared folder first, instructions here: https://docs.keeper.io/enterprise-guide/account-transfer-policy</li></ul>
+    <ul><li>35. Remove my Nuget access. Go to https://www.nuget.org/ | Sign in with SSW account | Manage Organizations | Edit SSW | Members.</li></ul>
+    <ul><li>36. Microsoft Flow - Check flows in "SSW Pty Ltd" and "SSW Production" environment for my hardcoded email address in any automated email template.</li></ul>
     <p>Note: Thank you, hopefully we will see you around the user groups!</p>
     <p>-- Partially powered by SSW.LeavingStandard<br> 
     <br>GitHub: <a href=$LeavingStandardGithub>SSWSysAdmins.LeavingStandard</a><br>
